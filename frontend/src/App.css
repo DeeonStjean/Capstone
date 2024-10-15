@@ -143,3 +143,22 @@ main {
 .desc {
   color: rgb(196, 255, 77);
 }
+#input {
+  font-size: 18px;
+  padding: 5px 10px;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  background: aliceblue;
+}
+#search {
+background: none;
+padding: 5px 20px;
+color: aliceblue;
+outline: none;
+background: cadetblue;
+font-size: 17px;
+border-radius: 15px;
+cursor: pointer;
+border: none;
+}
