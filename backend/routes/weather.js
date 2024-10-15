@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     res.send(results).status(200);
 });
 
-//pout route for post
+//pout route for weather
 router.post("/", async (req,res) => {
     try {
         const result = await Weather.create({
@@ -24,6 +24,17 @@ router.post("/", async (req,res) => {
     res.send(result);
     } catch(e) {
         console.log(e);
+    }
+});
+//delete route for weather
+router.delete("/:id", async(req,res) =>{
+    try {
+       const query = { _id: new ObjectId(req.params.id)}
+       let result = await Weather.deleteOne(query) ;
+       res.send(result).status(200);
+    } catch (e) {
+      console.log(e);
+      res.send(e).status(404);
     }
 });
 
