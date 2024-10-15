@@ -34,7 +34,7 @@ export default function Home(props){
       const response = await fetch(urlcast);
       const forecast = await response.json();
       console.log(forecast.city);
-      //hourForecast(forecast);
+      hourForecast(forecast);
       //dayForecast(forecast);
     
       console.log(data);
@@ -54,28 +54,46 @@ export default function Home(props){
       console.error('Error fetching forecast data:', error);
     }
   };
+  const hourForecast = (forecast) => {
+    document.querySelector('.templist').innerHTML = '';
+    for (let i = 0; i < 5; i++) {
+      var date = new Date(forecast.list[i].dt * 1000);
+      console.log((date.toLocaleTimeString(undefined, 'Asia/Kolkata')).replace(':00', ''));
+
+      let hourR = document.createElement('div');
+      hourR.setAttribute('class', 'next');
+
+      let div = document.createElement('div');
+      let time = document.createElement('p');
+      time.setAttribute('class', 'time');
+      time.innerText = (date.toLocaleTimeString(undefined, 'Asia/Kolkata')).replace(':00', '');
+
+      let temp = document.createElement('p');
+      temp.innerText = Math.floor((forecast.list[i].main.temp_max - 273)) + ' °C' + ' / ' + Math.floor((forecast.list[i].main.temp_min - 273)) + ' °C';
+
+      div.appendChild(time);
+      div.appendChild(temp);
+
+      let desc = document.createElement('p');
+      desc.setAttribute('class', 'desc');
+      desc.innerText = forecast.list[i].weather[0].description;
+
+      hourR.appendChild(div);
+      hourR.appendChild(desc);
+      document.querySelector('.templist').appendChild(hourR);
+    }
+  };
   return(
     <div className="background">
       <div className="Header">
       <h1>WEATHER APP</h1>
-        <div>
-          <input
-            type="text"
-            name=""
-            id="input"
-            placeholder="Enter city name"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-          
-        </div>
       </div>
       <main>
         <div className="weather">
-          <h2 id="city">Delhi,IN</h2>
+          <h2 id="city">Brookyln,US</h2>
           <div className="temp-box">
             <img src="/weathericon.png" alt="" id="img" />
-            <p id="temperature">26 °C</p>
+            <p id="temperature">53 °F</p>
           </div>
           <span id="clouds">Broken Clouds</span>
         </div>
