@@ -47,3 +47,99 @@ header {
   background-position: center;
   background-size: cover;
 }
+.weather {
+  text-align: center;
+  color: aliceblue;
+}
+
+#city {
+  font-size: 30px;
+}
+
+.weather img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(240, 248, 255, 0.408);
+}
+
+#temperature {
+  font-size: 50px;
+  margin: 0;
+  margin-left: 30px;
+  margin-bottom: 10px;
+}
+
+.temp-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+#clouds {
+  font-size: 20px;
+  background: rgba(153, 205, 50, 0.778);
+  padding: 2px 20px;
+  border-radius: 15px;
+}
+
+main {
+  display: grid;
+  grid-column-gap: 25px;
+  grid-template-columns: 1fr 5px 1fr;
+  align-items: center;
+  margin: 0 50px;
+  color: white;
+}
+.next {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.next p,
+.next h3 {
+  margin: 3px 0;
+}
+
+.forecstD {
+  margin: 20px 50px;
+  color: aliceblue;
+}
+
+.weekF {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cast-header {
+  color: aliceblue;
+  background: rgba(254, 189, 132, 0.539);
+  width: max-content;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.divider1,.divider2 {
+  background: rgba(254, 189, 132, 0.539);
+  height: 200px;
+  border-radius: 5px;
+}
+
+.divider2 {
+  height: 5px;
+  width: 30%;
+  margin: 0 auto;
+}
+
+.time,.date {
+  color: rgb(254, 189, 132);
+}
+
+.desc {
+  color: rgb(196, 255, 77);
+}
