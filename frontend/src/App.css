@@ -37,7 +37,7 @@ header {
   text-decoration: underline;
   font-family: 'Orbitron', sans-serif;
 }
-.background{
+body{
   background: whitesmoke;
   padding: 1rem 5rem;
   font-family: 'Roboto', sans-serif;
@@ -152,13 +152,57 @@ main {
   background: aliceblue;
 }
 #search {
-background: none;
-padding: 5px 20px;
-color: aliceblue;
-outline: none;
-background: cadetblue;
-font-size: 17px;
-border-radius: 15px;
-cursor: pointer;
-border: none;
+  background: none;
+  padding: 5px 20px;
+  color: aliceblue;
+  outline: none;
+  background: cadetblue;
+  font-size: 17px;
+  border-radius: 15px;
+  cursor: pointer;
+  border: none;
+}
+.dark{
+  background-image: url(https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmlnaHQlMjBza3l8ZW58MHx8MHx8fDA%3D);
+  background-color: #444;
+}
+
+img {
+  margin: 20px;
+  height: 100px;
+  width: 66px;
+}
+
+.switch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.5s ease;
+}
+
+.switch-button {
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2.5px;
+  left: 2.5px;
+  transition: all 0.3s ease;
+}
+
+.switch.dark {
+  background-color: #444;
+}
+
+.switch-button.dark {
+  left: 32.5px; 
+  background-color: #fff;
 }
