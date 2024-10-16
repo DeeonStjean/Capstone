@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import weatherkey from "../weatherconfig";
 const apikey = weatherkey;
+import MainWeatherCard from "../components/mainweathercard.jsx";
 
 export default function AirPollution(){
     const [city, setCity] = useState('London');
@@ -25,8 +26,7 @@ export default function AirPollution(){
         try {
             const response = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apikey}`);
             const data = await response.json();
-            console.log(data);
-          
+            console.log(data);  
         } catch (error) {
           console.error('Error fetching the air quality data:', error);
         }
@@ -37,9 +37,7 @@ export default function AirPollution(){
           //saveWeatherData(data);
         //setCity('');
       };
-      const handleSearch = (searchedCity) => {
-        setCity(searchedCity); 
-      };
+      
     return(
         <>
         <div className="header">
@@ -57,7 +55,23 @@ export default function AirPollution(){
                     Search
                 </button>
             </div>
-        </div>    
+        </div>
+        <div>
+      
+      
+        <div style={{ display: "flex", padding: "30px", gap: "20px" }}>
+          <div style={{ flex: "1", marginRight: "10px" }}>
+            <MainWeatherCard weatherData={weatherData} />
+            <p style={{ fontWeight: "700", fontSize: "20px", marginTop: "20px" }}>5 Days Forecast</p>
+            
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", flex: "0.5", gap: "20px" }}>
+            
+            
+          </div>
+        </div>
+     
+    </div>
         </>
     )
 }
