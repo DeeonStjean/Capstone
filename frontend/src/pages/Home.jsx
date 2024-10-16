@@ -59,6 +59,7 @@ export default function Home(props){
       console.error('Error fetching forecast data:', error);
     }
   };
+
   const saveWeatherData = async (data) => {
     try {
       const response = await axios.post('http://localhost:5000/weather', {
@@ -73,6 +74,8 @@ export default function Home(props){
       console.error('Error saving weather data to database:', error);
     }
   };
+
+  
   const hourForecast = (forecast) => {
     document.querySelector('.templist').innerHTML = '';
     for (let i = 0; i < 5; i++) {
