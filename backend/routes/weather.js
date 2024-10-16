@@ -37,5 +37,16 @@ router.delete("/:id", async(req,res) =>{
       res.send(e).status(404);
     }
 });
+//patch route for weather
+router.patch("/:id", async(req,res) => {
+    try{ 
+        const query = { _id: new ObjectId(req.params.id)};
+        const result = await Weather.updateOne(query, { $set: {author: req.body.author },});
+        res.send(result).status(200);
+    } catch (e) {
+        console.log(e);
+        res.send(e).status(404);
+    }
+});
 
 export default router;
