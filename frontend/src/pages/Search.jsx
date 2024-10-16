@@ -70,7 +70,7 @@ export default function Search(props){
       weatherReport(Data);
       setWeatherData(Data);
       // Send data to backend for storage
-      saveWeatherData(data);
+      saveWeatherData(Data);
     } catch (error) {
       console.error('Error fetching weather data:', error);
     }

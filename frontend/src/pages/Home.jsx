@@ -141,7 +141,7 @@ export default function Home(props){
   };
   return(
     <div className="background">
-      <div className="Header">
+      <div className="header">
         <h1>WEATHER APP</h1>
       </div>
       <main>
