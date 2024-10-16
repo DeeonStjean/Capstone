@@ -4,6 +4,7 @@ const apikey = weatherkey;
 export default function Search(props){
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
+  
   const weatherReport = async (data) => {
     const urlcast = `http://api.openweathermap.org/data/2.5/forecast?q=${data.name}&appid=${apikey}`;
       try {
@@ -30,6 +31,7 @@ export default function Search(props){
         console.error('Error fetching forecast data:', error);
       }
   };
+  
   const hourForecast = (forecast) => {
     document.querySelector('.templist').innerHTML = '';
     for (let i = 0; i < 5; i++) {
@@ -68,13 +70,26 @@ export default function Search(props){
       weatherReport(Data);
       setWeatherData(Data);
       // Send data to backend for storage
-      //saveWeatherData(data);
+      saveWeatherData(data);
     } catch (error) {
       console.error('Error fetching weather data:', error);
     }
     setCity('');
   };
-    
+  const saveWeatherData = async (data) => {
+    try {
+      const response = await axios.post('http://localhost:5000/weather', {
+        city: data.name,
+        country: data.sys.country,
+        temperature: Math.floor(data.main.temp - 273),
+        description: data.weather[0].description,
+        icon: data.weather[0].icon,
+      });
+      console.log('Weather data saved to database:', response.data);
+    } catch (error) {
+      console.error('Error saving weather data to database:', error);
+    }
+  };
   return(
     <div className="background">
       <div className="header">
