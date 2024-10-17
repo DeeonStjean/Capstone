@@ -10,6 +10,15 @@ every time you search a city it sent data to backend server
 - air pollution page: default to london, show the air quality index(AQI), show when the sunrise and sunset in the london,show humidity and more, you can change the city with search bar 
 
 - signup page: this page show where you can sign up or login, and you can't submit until the requirement are meet.
+
+# frontend
+- React
+- css
+# backend
+- node js
+- express
+- mongoBD/mongoose
+
 # Requirements
 (20%) Project Structure, Standardization, and Convention
 
