@@ -18,7 +18,7 @@ const getWeatherData = async (city) => {
         const data = await response.json();   
         setWeatherData(data);
         weatherReport(data);    
-        //fetchAirQuality(data.coord.lat, data.coord.lon);
+        saveWeatherData(data);
     } catch (error){
         console.error('Error fetching the weather data:', error)
     }          
