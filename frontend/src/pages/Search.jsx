@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import weatherkey from "../weatherconfig";
+import axios from 'axios';
 const apikey = weatherkey;
 export default function Search(props){
   const [city, setCity] = useState('');
@@ -61,6 +62,7 @@ export default function Search(props){
       document.querySelector('.templist').appendChild(hourR);
     }
   };
+  //search for city 
   const searchByCity = async () => {
     try {
       const urlsearch = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;

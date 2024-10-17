@@ -33,6 +33,7 @@ export default function Home(props){
       console.error('Error fetching weather data:', error);
     }
   };
+
   const weatherReport = async (data) => {
     const urlcast = `http://api.openweathermap.org/data/2.5/forecast?q=${data.name}&appid=${apikey}`;
     try {
@@ -59,7 +60,7 @@ export default function Home(props){
       console.error('Error fetching forecast data:', error);
     }
   };
-
+  // push data to mongodb database
   const saveWeatherData = async (data) => {
     try {
       const response = await axios.post('http://localhost:5000/weather', {

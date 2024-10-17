@@ -1,7 +1,9 @@
 import {useState, useEffect} from "react";
+import Navbar from "../components/Searchbar.jsx";
 import weatherkey from "../weatherconfig";
 const apikey = weatherkey;
 import MainWeatherCard from "../components/mainweathercard.jsx";
+import TodayHighlights from "../components/todayhighlight.jsx";
 
 export default function AirPollution(){
     const [city, setCity] = useState('London');
@@ -13,7 +15,7 @@ export default function AirPollution(){
 
     const getWeatherData = async (city) => {
         try{
-            const response = await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`);
+            const response = await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apikey}`);
             const data = await response.json();   
             setWeatherData(data);     
             fetchAirQuality(data.coord.lat, data.coord.lon);
@@ -26,51 +28,31 @@ export default function AirPollution(){
         try {
             const response = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apikey}`);
             const data = await response.json();
-            console.log(data);  
+            setAirQuality(data.list[0]);  
         } catch (error) {
           console.error('Error fetching the air quality data:', error);
         }
+    };
+    const handleSearch = (searchedCity) => {
+        setCity(searchedCity); 
+    };
 
-          //weatherReport(Data);
-          //setWeatherData(Data);
-          // Send data to backend for storage
-          //saveWeatherData(data);
-        //setCity('');
-      };
-      
     return(
         <>
         <div className="header">
             <h1>WEATHER APP</h1>
-            <div>
-                <input
-                type="text"
-                name=""
-                id="input"
-                placeholder="Enter city name"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                />
-                <button id="search" /*onClick={searchByCity}*/>
-                    Search
-                </button>
-            </div>
+            <Navbar onSearch={handleSearch} />
         </div>
         <div>
       
-      
+        {weatherData && airQuality &&  (
         <div style={{ display: "flex", padding: "30px", gap: "20px" }}>
-          <div style={{ flex: "1", marginRight: "10px" }}>
-            <MainWeatherCard weatherData={weatherData} />
-            <p style={{ fontWeight: "700", fontSize: "20px", marginTop: "20px" }}>5 Days Forecast</p>
-            
-          </div>
+          
           <div style={{ display: "flex", flexDirection: "column", flex: "0.5", gap: "20px" }}>
-            
-            
+            <TodayHighlights weatherData={weatherData} airQualityData={airQuality}  />
           </div>
         </div>
-     
+        )}
     </div>
         </>
     )
