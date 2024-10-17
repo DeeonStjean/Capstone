@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom"
 import axios from 'axios';
 import weatherkey from "../weatherconfig";
 const apikey = weatherkey;
-
+export const BASE_URL = import.meta.env.VITE_BASE_URL
 import bulbOn from '../assets/bulb-on.png'
 import bulboff from "../assets/bulb-off.png";
 import sound from "../assets/light-switch-sound.mp3";
@@ -63,7 +63,7 @@ export default function Home(props){
   // push data to mongodb database
   const saveWeatherData = async (data) => {
     try {
-      const response = await axios.post('http://localhost:5000/weather', {
+      const response = await axios.post(BASE_URL, {
         city: data.name,
         country: data.sys.country,
         temperature: Math.floor(data.main.temp - 273),
@@ -106,6 +106,8 @@ export default function Home(props){
       document.querySelector('.templist').appendChild(hourR);
     }
   };
+
+
   const dayForecast = (forecast) => {
     document.querySelector('.weekF').innerHTML = '';
     for (let i = 8; i < forecast.list.length; i += 8) {
@@ -140,6 +142,8 @@ export default function Home(props){
     const audio = new Audio(sound);
     audio.play();
   };
+
+
   return(
     <div className="background">
       <div className="header">

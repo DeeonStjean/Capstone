@@ -2,9 +2,11 @@ import {useState, useEffect} from "react";
 import weatherkey from "../weatherconfig";
 import axios from 'axios';
 const apikey = weatherkey;
+export const BASE_URL = import.meta.env.VITE_BASE_URL
 export default function Search(props){
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
+  
   
   const weatherReport = async (data) => {
     const urlcast = `http://api.openweathermap.org/data/2.5/forecast?q=${data.name}&appid=${apikey}`;
@@ -80,7 +82,7 @@ export default function Search(props){
   };
   const saveWeatherData = async (data) => {
     try {
-      const response = await axios.post('http://localhost:5000/weather', {
+      const response = await axios.post(BASE_URL, {
         city: data.name,
         country: data.sys.country,
         temperature: Math.floor(data.main.temp - 273),
