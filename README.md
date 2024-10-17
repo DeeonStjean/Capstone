@@ -22,35 +22,35 @@ every time you search a city it sent data to backend server
 
 (12%) Core JavaScript
 
-- Demonstrate proper usage of ES6 syntax and tools. (2%) x
-- Use functions and classes to adhere to the DRY principle. (2%) x
-- Use Promises and async/await, where appropriate. (2%) x
-- Use Axios or fetch to retrieve data from an API. (2%) x
-- Use sound programming logic throughout the application. (2%) x
-- Use appropriate exception handling. (try/catch) (2%) x
+- Demonstrate proper usage of ES6 syntax and tools. (2%)
+- Use functions and classes to adhere to the DRY principle. (2%)
+- Use Promises and async/await, where appropriate. (2%)
+- Use Axios or fetch to retrieve data from an API. (2%)
+- Use sound programming logic throughout the application. (2%)
+- Use appropriate exception handling. (try/catch) (2%)
 
 (9%) Database
 
-- Use MongoDB to create a database for your application. (5%) x
-- Apply appropriate indexes to your database collections. (2%) x
+- Use MongoDB to create a database for your application. (5%)
+- Apply appropriate indexes to your database collections. (2%)
 - Create reasonable schemas for your data by following data modeling best practices. (2%) 
 
 (19%) Server
 
-- Create a RESTful API using Node and Express. (7%) (x?)
+- Create a RESTful API using Node and Express. (7%)
 For the purposes of this project, you may forgo the HATEOAS aspect of REST APIs.
-- Include API routes for all four CRUD operations. (5%) (x)
-- Utilize the native MongoDB driver or Mongoose to interface with your database. (5%) (x)
-- Include at least one form of user authentication/authorization within the application. (2%) (x)
+- Include API routes for all four CRUD operations. (5%)
+- Utilize the native MongoDB driver or Mongoose to interface with your database. (5%)
+- Include at least one form of user authentication/authorization within the application. (2%)
 
 (35%) Front-End Development
 
-- Use React to create the application’s front-end. (10%) (x)
-- Use CSS to style the application. (5%) (x)
-- Create at least four different views or pages for the application. (5%) (x)
-- Create some form of navigation that is included across the application’s pages, utilizing React Router for page rendering. (5%) (x)
-- Use React Hooks or Redux for application state management. (5%) (useState and useEffect - X)
-- Interface directly with the server and API that you created. (5%) (x)
+- Use React to create the application’s front-end. (10%)
+- Use CSS to style the application. (5%)
+- Create at least four different views or pages for the application. (5%)
+- Create some form of navigation that is included across the application’s pages, utilizing React Router for page rendering. (5%)
+- Use React Hooks or Redux for application state management. (5%)
+- Interface directly with the server and API that you created. (5%)
 
 (5%) Presentation
 
