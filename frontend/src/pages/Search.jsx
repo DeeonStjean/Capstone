@@ -1,12 +1,28 @@
 import {useState, useEffect} from "react";
 import weatherkey from "../weatherconfig";
+import Navbar from "../components/Searchbar.jsx";
+import MainWeatherCard from "../components/mainweathercard.jsx";
 import axios from 'axios';
 const apikey = weatherkey;
 export const BASE_URL = import.meta.env.VITE_BASE_URL
 export default function Search(props){
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
-  
+  useEffect(() => {
+    getWeatherData(city)
+}, [city]);
+
+const getWeatherData = async (city) => {
+    try{
+        const response = await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apikey}`);
+        const data = await response.json();   
+        setWeatherData(data);
+        weatherReport(data);    
+        //fetchAirQuality(data.coord.lat, data.coord.lon);
+    } catch (error){
+        console.error('Error fetching the weather data:', error)
+    }          
+}
   
   const weatherReport = async (data) => {
     const urlcast = `http://api.openweathermap.org/data/2.5/forecast?q=${data.name}&appid=${apikey}`;
@@ -22,7 +38,7 @@ export default function Search(props){
         console.log(data.name, data.sys.country);
         
         console.log(Math.floor(data.main.temp - 273));
-        document.getElementById('temperature').innerText = Math.floor(data.main.temp - 273) + ' °C';
+        document.getElementById('temperature').innerText = Math.floor(data.main.temp) + ' °C';
         
         document.getElementById('clouds').innerText = data.weather[0].description;
         console.log(data.weather[0].description);
@@ -65,27 +81,16 @@ export default function Search(props){
     }
   };
   //search for city 
-  const searchByCity = async () => {
-    try {
-      const urlsearch = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
-      const response = await fetch(urlsearch);
-      const Data = await response.json();
-      console.log(Data);
-      weatherReport(Data);
-      setWeatherData(Data);
-      // Send data to backend for storage
-      saveWeatherData(Data);
-    } catch (error) {
-      console.error('Error fetching weather data:', error);
-    }
-    setCity('');
-  };
+  
+  const handleSearch = (searchedCity) => {
+    setCity(searchedCity); 
+};
   const saveWeatherData = async (data) => {
     try {
       const response = await axios.post(BASE_URL, {
         city: data.name,
         country: data.sys.country,
-        temperature: Math.floor(data.main.temp - 273),
+        temperature: Math.floor(data.main.temp),
         description: data.weather[0].description,
         icon: data.weather[0].icon,
       });
@@ -98,19 +103,7 @@ export default function Search(props){
     <div className="background">
       <div className="header">
         <h1>WEATHER APP</h1>
-        <div>
-          <input
-          type="text"
-          name=""
-          id="input"
-          placeholder="Enter city name"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          />
-          <button id="search" onClick={searchByCity}>
-            Search
-          </button>
-        </div>
+        <Navbar onSearch={handleSearch} />
       </div>
       <main>
         <div className="weather">
